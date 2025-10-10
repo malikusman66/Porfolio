@@ -12,9 +12,12 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+    >
       <div className="hero-background" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <ScrollReveal>
@@ -29,7 +32,7 @@ export default function HeroSection() {
               </span>
             </motion.div>
           </ScrollReveal>
-          
+
           <ScrollReveal>
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
@@ -37,10 +40,10 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight"
             >
-              <span className="gradient-text">John Doe</span>
+              <span className="gradient-text">Usman Nawaz</span>
             </motion.h1>
           </ScrollReveal>
-          
+
           <ScrollReveal>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -55,7 +58,7 @@ export default function HeroSection() {
               </div>
             </motion.div>
           </ScrollReveal>
-          
+
           <ScrollReveal>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -63,11 +66,12 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
             >
-              Crafting beautiful, responsive, and performant web experiences with modern technologies.
-              Passionate about clean code and pixel-perfect designs.
+              Crafting beautiful, responsive, and performant web experiences
+              with modern technologies. Passionate about clean code and
+              pixel-perfect designs.
             </motion.p>
           </ScrollReveal>
-          
+
           <ScrollReveal>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -93,7 +97,7 @@ export default function HeroSection() {
               </Button>
             </motion.div>
           </ScrollReveal>
-          
+
           {/* Animated scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -105,7 +109,7 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Floating elements */}
       <motion.div
         animate={{ y: [0, -20, 0] }}
@@ -114,12 +118,22 @@ export default function HeroSection() {
       />
       <motion.div
         animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
         className="absolute bottom-20 right-10 w-32 h-32 bg-white/5 rounded-full blur-xl"
       />
       <motion.div
         animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
         className="absolute top-1/2 right-20 w-24 h-24 bg-white/5 rounded-full blur-xl"
       />
     </section>

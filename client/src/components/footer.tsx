@@ -8,19 +8,21 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
               <p className="text-muted-foreground text-sm">
-                © 2024 <span className="gradient-text font-semibold">John Doe</span>. All rights reserved.
+                © 2024{" "}
+                <span className="gradient-text font-semibold">Usman Nawaz</span>
+                . All rights reserved.
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <a 
-                href="#" 
+              <a
+                href="#"
                 data-testid="link-privacy-policy"
                 className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
               >
                 Privacy Policy
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 data-testid="link-terms-of-service"
                 className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
               >

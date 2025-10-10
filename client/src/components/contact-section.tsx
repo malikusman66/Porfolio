@@ -4,16 +4,16 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { 
-  Mail, 
-  MapPin, 
-  Phone, 
-  Send, 
-  Github, 
-  Linkedin, 
-  Twitter, 
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
   ExternalLink,
-  MessageCircle
+  MessageCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +34,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactSection() {
   const { toast } = useToast();
-  
+
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -46,7 +46,8 @@ export default function ContactSection() {
   });
 
   const mutation = useMutation({
-    mutationFn: (data: ContactFormData) => apiRequest("POST", "/api/contact", data),
+    mutationFn: (data: ContactFormData) =>
+      apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
         title: "Message sent successfully!",
@@ -71,23 +72,23 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@johndoe.dev",
-      link: "mailto:hello@johndoe.dev",
-      color: "primary"
+      value: "hello@Usman.dev",
+      link: "mailto:hello@Usman.dev",
+      color: "primary",
     },
     {
       icon: MapPin,
       title: "Location",
       value: "San Francisco, CA",
-      color: "secondary"
+      color: "secondary",
     },
     {
       icon: Phone,
       title: "Phone",
       value: "+1 (234) 567-890",
       link: "tel:+1234567890",
-      color: "accent"
-    }
+      color: "accent",
+    },
   ];
 
   const socialLinks = [
@@ -99,7 +100,10 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-gradient-to-b from-muted/20 to-background">
+    <section
+      id="contact"
+      className="py-20 md:py-32 bg-gradient-to-b from-muted/20 to-background"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -111,7 +115,8 @@ export default function ContactSection() {
               <span className="gradient-text">Let's Work Together</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind? Let's discuss how I can help bring your ideas to life
+              Have a project in mind? Let's discuss how I can help bring your
+              ideas to life
             </p>
           </div>
         </ScrollReveal>
@@ -120,15 +125,21 @@ export default function ContactSection() {
           {/* Contact Form */}
           <ScrollReveal>
             <div className="gradient-border p-8 rounded-2xl">
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <div>
-                  <Label htmlFor="name" className="block text-sm font-semibold mb-2 text-foreground">
+                  <Label
+                    htmlFor="name"
+                    className="block text-sm font-semibold mb-2 text-foreground"
+                  >
                     Name
                   </Label>
                   <Input
                     id="name"
                     data-testid="input-name"
-                    placeholder="John Doe"
+                    placeholder="Usman Nawaz"
                     className="w-full px-4 py-3 bg-muted border-2 border-border rounded-lg text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                     {...form.register("name")}
                   />
@@ -138,16 +149,19 @@ export default function ContactSection() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
-                  <Label htmlFor="email" className="block text-sm font-semibold mb-2 text-foreground">
+                  <Label
+                    htmlFor="email"
+                    className="block text-sm font-semibold mb-2 text-foreground"
+                  >
                     Email
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     data-testid="input-email"
-                    placeholder="john@example.com"
+                    placeholder="usmannawaz0304@gmail.com"
                     className="w-full px-4 py-3 bg-muted border-2 border-border rounded-lg text-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                     {...form.register("email")}
                   />
@@ -157,9 +171,12 @@ export default function ContactSection() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
-                  <Label htmlFor="subject" className="block text-sm font-semibold mb-2 text-foreground">
+                  <Label
+                    htmlFor="subject"
+                    className="block text-sm font-semibold mb-2 text-foreground"
+                  >
                     Subject
                   </Label>
                   <Input
@@ -175,9 +192,12 @@ export default function ContactSection() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
-                  <Label htmlFor="message" className="block text-sm font-semibold mb-2 text-foreground">
+                  <Label
+                    htmlFor="message"
+                    className="block text-sm font-semibold mb-2 text-foreground"
+                  >
                     Message
                   </Label>
                   <Textarea
@@ -194,7 +214,7 @@ export default function ContactSection() {
                     </p>
                   )}
                 </div>
-                
+
                 <Button
                   type="submit"
                   data-testid="button-send-message"
@@ -205,7 +225,11 @@ export default function ContactSection() {
                     <>
                       <motion.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
                         className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
                       />
                       Sending...
@@ -236,11 +260,18 @@ export default function ContactSection() {
                     className="gradient-border p-6 rounded-2xl"
                   >
                     <div className="flex items-start gap-4">
-                      <div className={`flex-shrink-0 w-12 h-12 bg-${info.color}/20 rounded-lg flex items-center justify-center`}>
-                        <IconComponent className={`text-${info.color} text-xl`} size={24} />
+                      <div
+                        className={`flex-shrink-0 w-12 h-12 bg-${info.color}/20 rounded-lg flex items-center justify-center`}
+                      >
+                        <IconComponent
+                          className={`text-${info.color} text-xl`}
+                          size={24}
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-1 text-foreground">{info.title}</h3>
+                        <h3 className="text-lg font-bold mb-1 text-foreground">
+                          {info.title}
+                        </h3>
                         {info.link ? (
                           <a
                             href={info.link}
@@ -262,7 +293,9 @@ export default function ContactSection() {
             {/* Social Links */}
             <ScrollReveal>
               <div className="gradient-border p-8 rounded-2xl">
-                <h3 className="text-xl font-bold mb-6 text-center text-foreground">Connect With Me</h3>
+                <h3 className="text-xl font-bold mb-6 text-center text-foreground">
+                  Connect With Me
+                </h3>
                 <div className="flex justify-center gap-4">
                   {socialLinks.map((social, index) => {
                     const IconComponent = social.icon;

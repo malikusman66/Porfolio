@@ -21,19 +21,6 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <ScrollReveal>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-6"
-            >
-              <span className="inline-block px-4 py-2 bg-muted rounded-full text-sm font-mono text-muted-foreground mb-4">
-                👋 Welcome to my portfolio
-              </span>
-            </motion.div>
-          </ScrollReveal>
-
-          <ScrollReveal>
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}

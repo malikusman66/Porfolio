@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { LucideIcon } from "lucide-react";
 import { z } from "zod";
 import {
   Mail,
@@ -79,24 +80,52 @@ export default function ContactSection() {
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Kachih, Pakistan",
       color: "secondary",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (234) 567-890",
-      link: "tel:+1234567890",
+      value: "+923128763120",
+      link: "tel:+923128763120",
       color: "accent",
     },
   ];
 
-  const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: ExternalLink, href: "#", label: "Portfolio" },
-    { icon: MessageCircle, href: "#", label: "Discord" },
+  type ContactFormData = z.infer<typeof contactSchema>;
+
+  interface SocialLink {
+    icon: LucideIcon;
+    href: string;
+    label: string;
+  }
+
+  const socialLinks: SocialLink[] = [
+    {
+      icon: Github,
+      href: "https://github.com/your-username",
+      label: "GitHub",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/your-username/",
+      label: "LinkedIn",
+    },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/your-username",
+      label: "Twitter",
+    },
+    {
+      icon: ExternalLink,
+      href: "https://your-portfolio.com",
+      label: "Portfolio",
+    },
+    {
+      icon: MessageCircle,
+      href: "https://discord.com/users/your-id",
+      label: "Discord",
+    },
   ];
 
   return (

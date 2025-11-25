@@ -132,15 +132,8 @@ export default function SkillsSection() {
 
   return (
     <section
-      id="skills"
-      className="py-20 md:py-32 bg-background"
-      style={{
-        background:
-          "linear-gradient(-45deg, #ff7e5f, #feb47b, #86fde8, #00c6ff)",
-        backgroundSize: "400% 400%",
-        animation: "gradientAnimation 15s ease infinite",
-        color: "black",
-      }}
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 bg-black text-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>

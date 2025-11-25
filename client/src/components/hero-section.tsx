@@ -15,6 +15,13 @@ export default function HeroSection() {
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      style={{
+        background:
+          "linear-gradient(-45deg, #ff7e5f, #feb47b, #86fde8, #00c6ff)",
+        backgroundSize: "400% 400%",
+        animation: "gradientAnimation 15s ease infinite",
+        color: "black",
+      }}
     >
       <div className="hero-background" />
 

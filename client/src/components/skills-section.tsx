@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { 
-  Wrench, 
-  Monitor, 
-  Palette, 
-  Code, 
-  Database, 
+import {
+  Wrench,
+  Monitor,
+  Palette,
+  Code,
+  Database,
   Smartphone,
   GitBranch,
   Figma,
@@ -24,15 +24,29 @@ export default function SkillsSection() {
   ];
 
   const additionalTechs = [
-    "Redux", "GraphQL", "REST APIs", "Webpack", "Vite", "Jest",
-    "Cypress", "Docker", "MongoDB", "PostgreSQL", "Firebase",
-    "Vercel", "AWS", "CI/CD", "Storybook", "Framer Motion"
+    "Redux",
+    "GraphQL",
+    "REST APIs",
+    "Webpack",
+    "Vite",
+    "Jest",
+    "Cypress",
+    "Docker",
+    "MongoDB",
+    "PostgreSQL",
+    "Firebase",
+    "Vercel",
+    "AWS",
+    "CI/CD",
+    "Storybook",
+    "Framer Motion",
   ];
 
-  const CircularProgress = ({ skill }: { skill: typeof skills[0] }) => {
+  const CircularProgress = ({ skill }: { skill: (typeof skills)[0] }) => {
     const radius = 54;
     const circumference = 2 * Math.PI * radius;
-    const strokeDashoffset = circumference - (skill.level / 100) * circumference;
+    const strokeDashoffset =
+      circumference - (skill.level / 100) * circumference;
 
     return (
       <ScrollReveal>
@@ -44,7 +58,10 @@ export default function SkillsSection() {
           className="gradient-border p-6 rounded-2xl text-center"
         >
           <div className="relative w-32 h-32 mx-auto mb-4">
-            <svg className="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+            <svg
+              className="w-full h-full transform -rotate-90"
+              viewBox="0 0 120 120"
+            >
               <circle
                 cx="60"
                 cy="60"
@@ -69,10 +86,28 @@ export default function SkillsSection() {
                 viewport={{ once: true }}
               />
               <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(0, 0%, 100%)" stopOpacity="1" />
-                  <stop offset="50%" stopColor="hsl(0, 0%, 70%)" stopOpacity="1" />
-                  <stop offset="100%" stopColor="hsl(0, 0%, 50%)" stopOpacity="1" />
+                <linearGradient
+                  id="gradient"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    stopColor="hsl(0, 0%, 100%)"
+                    stopOpacity="1"
+                  />
+                  <stop
+                    offset="50%"
+                    stopColor="hsl(0, 0%, 70%)"
+                    stopOpacity="1"
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="hsl(0, 0%, 50%)"
+                    stopOpacity="1"
+                  />
                 </linearGradient>
               </defs>
             </svg>
@@ -80,9 +115,15 @@ export default function SkillsSection() {
               <span className="text-4xl">{skill.icon}</span>
             </div>
           </div>
-          <h3 className="text-xl font-bold mb-2 text-foreground">{skill.name}</h3>
+          <h3 className="text-xl font-bold mb-2 text-foreground">
+            {skill.name}
+          </h3>
           <p className="text-primary font-mono text-sm">
-            {skill.level >= 90 ? "Expert" : skill.level >= 80 ? "Advanced" : "Intermediate"}
+            {skill.level >= 90
+              ? "Expert"
+              : skill.level >= 80
+              ? "Advanced"
+              : "Intermediate"}
           </p>
         </motion.div>
       </ScrollReveal>
@@ -90,7 +131,17 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-background">
+    <section
+      id="skills"
+      className="py-20 md:py-32 bg-background"
+      style={{
+        background:
+          "linear-gradient(-45deg, #ff7e5f, #feb47b, #86fde8, #00c6ff)",
+        backgroundSize: "400% 400%",
+        animation: "gradientAnimation 15s ease infinite",
+        color: "black",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -117,7 +168,9 @@ export default function SkillsSection() {
         {/* Additional Skills */}
         <ScrollReveal>
           <div className="gradient-border p-8 rounded-2xl">
-            <h3 className="text-2xl font-bold mb-6 text-center gradient-text">Additional Technologies</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center gradient-text">
+              Additional Technologies
+            </h3>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +187,9 @@ export default function SkillsSection() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.1 }}
                   className="tech-badge px-4 py-2 bg-muted rounded-lg text-sm font-mono text-foreground cursor-default"
-                  data-testid={`tech-${tech.toLowerCase().replace(/\s+/g, '-')}`}
+                  data-testid={`tech-${tech
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
                 >
                   {tech}
                 </motion.span>

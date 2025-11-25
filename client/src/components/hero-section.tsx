@@ -53,9 +53,11 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
             >
-              Crafting beautiful, responsive, and performant web experiences
-              with modern technologies. Passionate about clean code and
-              pixel-perfect designs.
+              “I craft beautiful, responsive, and high-performance web
+              experiences using modern technologies. I am passionate about
+              writing clean, maintainable code and delivering pixel-perfect
+              designs. Currently, I am contributing to census data management
+              and optimization.
             </motion.p>
           </ScrollReveal>
 

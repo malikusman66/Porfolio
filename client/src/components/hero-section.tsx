@@ -53,11 +53,10 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
             >
-              “I craft beautiful, responsive, and high-performance web
-              experiences using modern technologies. I am passionate about
-              writing clean, maintainable code and delivering pixel-perfect
-              designs. Currently, I am contributing to census data management
-              and optimization.
+              This is my first portfolio, built to showcase my passion for
+              frontend development. I focus on creating responsive, fast, and
+              visually polished web applications that provide a smooth and
+              enjoyable experience for users.
             </motion.p>
           </ScrollReveal>
 

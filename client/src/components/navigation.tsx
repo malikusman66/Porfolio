@@ -1,113 +1,52 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Work" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: "-100px" }
-    );
-
-    sections.forEach((section) => observer.observe(section));
+    const sections = navItems.map(item => document.getElementById(item.id)).filter(Boolean) as HTMLElement[];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
+    }, { threshold: 0.25, rootMargin: "-20% 0px -55% 0px" });
+    sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const goTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setIsOpen(false);
   };
 
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
-    { id: "contact", label: "Contact" },
-  ];
-
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <span className="text-2xl font-bold gradient-text">UN</span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  data-testid={`nav-${item.id}`}
-                  className={`nav-link font-medium px-3 py-2 rounded-md transition-colors ${
-                    activeSection === item.id
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              data-testid="mobile-menu-toggle"
-              className="text-foreground hover:text-primary p-2"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[.07] bg-[#080808]/80 backdrop-blur-2xl">
+      <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Main navigation">
+        <button onClick={() => goTo("home")} className="flex items-center gap-3" aria-label="Go to home">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[.06] text-xs font-bold tracking-tight text-white">UN</span>
+          <span className="text-sm font-semibold tracking-wide text-white">Usman Nawaz<span className="text-zinc-500">.</span></span>
+        </button>
+        <div className="hidden items-center gap-1 md:flex">
+          {navItems.map(item => <button key={item.id} onClick={() => goTo(item.id)} className={`rounded-full px-4 py-2 text-xs font-medium transition ${activeSection === item.id ? "bg-white/10 text-white" : "text-zinc-500 hover:text-white"}`}>{item.label}</button>)}
         </div>
-      </div>
-
-      {/* Mobile Navigation */}
+        <a href="https://github.com/malikusman66" target="_blank" rel="noreferrer" className="hidden items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white hover:text-black md:inline-flex">GitHub <ArrowUpRight size={14} /></a>
+        <button onClick={() => setIsOpen(value => !value)} className="rounded-lg border border-white/10 p-2 text-white md:hidden" aria-label={isOpen ? "Close menu" : "Open menu"} aria-expanded={isOpen}>{isOpen ? <X size={20} /> : <Menu size={20} />}</button>
+      </nav>
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  data-testid={`mobile-nav-${item.id}`}
-                  className={`block w-full text-left px-3 py-2 rounded-md font-medium transition-colors ${
-                    activeSection === item.id
-                      ? "text-primary bg-primary/10"
-                      : "text-foreground hover:text-primary hover:bg-muted/50"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
+        {isOpen && <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden border-t border-white/[.07] bg-[#080808] md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4 sm:px-8">{navItems.map(item => <button key={item.id} onClick={() => goTo(item.id)} className={`rounded-lg px-4 py-3 text-left text-sm ${activeSection === item.id ? "bg-white/10 text-white" : "text-zinc-400"}`}>{item.label}</button>)}
+          <a href="https://github.com/malikusman66" target="_blank" rel="noreferrer" className="mt-2 flex items-center gap-2 px-4 py-3 text-sm text-white">GitHub <ArrowUpRight size={15} /></a></div>
+        </motion.div>}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 }

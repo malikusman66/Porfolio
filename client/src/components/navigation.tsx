@@ -1,113 +1,22 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const items = [{ id: "home", label: "Home" }, { id: "about", label: "About" }, { id: "experience", label: "Experience" }, { id: "projects", label: "Work" }, { id: "skills", label: "Skills" }, { id: "contact", label: "Contact" }];
 
 export default function Navigation() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.3, rootMargin: "-100px" }
-    );
-
-    sections.forEach((section) => observer.observe(section));
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: "-35% 0px -55% 0px" });
+    items.forEach(item => { const node = document.getElementById(item.id); if (node) observer.observe(node); });
     return () => observer.disconnect();
   }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setIsOpen(false);
-  };
-
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
-    { id: "contact", label: "Contact" },
-  ];
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <span className="text-2xl font-bold gradient-text">UN</span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  data-testid={`nav-${item.id}`}
-                  className={`nav-link font-medium px-3 py-2 rounded-md transition-colors ${
-                    activeSection === item.id
-                      ? "text-primary"
-                      : "text-foreground hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              data-testid="mobile-menu-toggle"
-              className="text-foreground hover:text-primary p-2"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  data-testid={`mobile-nav-${item.id}`}
-                  className={`block w-full text-left px-3 py-2 rounded-md font-medium transition-colors ${
-                    activeSection === item.id
-                      ? "text-primary bg-primary/10"
-                      : "text-foreground hover:text-primary hover:bg-muted/50"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
+  const go = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setOpen(false); };
+  return <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"><div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between rounded-2xl border border-white/[.09] bg-[#090909]/85 px-5 shadow-2xl backdrop-blur-xl sm:px-7">
+    <button onClick={() => go("home")} className="text-lg font-semibold tracking-[-.06em] text-white">UN<span className="text-zinc-600">.</span></button>
+    <div className="hidden items-center gap-1 md:flex">{items.map(item => <button key={item.id} onClick={() => go(item.id)} className={`rounded-full px-3 py-2 text-xs transition lg:px-4 lg:text-sm ${active === item.id ? "bg-white/10 text-white" : "text-zinc-500 hover:text-white"}`}>{item.label}</button>)}</div>
+    <a href="#contact" onClick={event => { event.preventDefault(); go("contact"); }} className="hidden items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-semibold text-black transition hover:bg-zinc-200 md:inline-flex">Let's talk <ArrowUpRight size={15}/></a>
+    <button aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)} className="rounded-lg p-2 text-white md:hidden">{open ? <X/> : <Menu/>}</button>
+  </div><AnimatePresence>{open && <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="mx-auto mt-2 max-w-7xl rounded-2xl border border-white/10 bg-[#101010] p-3 shadow-xl md:hidden">{items.map(item => <button key={item.id} onClick={() => go(item.id)} className="block w-full rounded-xl px-4 py-3 text-left text-sm text-zinc-300 hover:bg-white/5">{item.label}</button>)}</motion.div>}</AnimatePresence></nav>;
 }

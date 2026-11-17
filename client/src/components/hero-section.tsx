@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDownRight, Github, Linkedin, Sparkles } from "lucide-react";
+import { ArrowDownRight, Github, Sparkles } from "lucide-react";
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -15,7 +15,7 @@ export default function HeroSection() {
         <div>
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }} className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-4 py-2 text-xs font-medium tracking-[.18em] text-zinc-300">
             <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]" />
-            AVAILABLE FOR NEW OPPORTUNITIES
+            FRONTEND ENGINEERING · UI DEVELOPMENT
           </motion.div>
           <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }} className="mb-5 font-mono text-sm tracking-[.22em] text-zinc-500">HELLO, I'M</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .18, duration: .7 }} className="max-w-4xl text-6xl font-semibold leading-[.98] tracking-[-.07em] sm:text-7xl md:text-8xl xl:text-[104px]">
@@ -37,7 +37,6 @@ export default function HeroSection() {
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .7 }} className="mt-12 flex items-center gap-5 text-zinc-500">
             <a href="https://github.com/malikusman66" target="_blank" rel="noreferrer" aria-label="GitHub" className="transition hover:text-white"><Github size={19} /></a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="transition hover:text-white"><Linkedin size={19} /></a>
             <span className="h-px w-12 bg-white/15" />
             <span className="text-xs tracking-[.16em]">BASED IN PAKISTAN</span>
           </motion.div>
